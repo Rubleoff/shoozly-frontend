@@ -1,0 +1,47 @@
+.header {
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.cat_slider {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0 1rem;
+  -webkit-overflow-scrolling: touch; /* smooth scroll на iOS */
+}
+
+/* Скрыть scrollbar */
+.cat_slider::-webkit-scrollbar {
+  display: none;
+}
+
+.cat_button {
+  flex-shrink: 0;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  scroll-snap-align: center;
+}
+
+.cat_button:hover {
+  background: #f0f0f0;
+}
+
+.cat__selected {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+  transform: scale(1.1);
+}
+
+.cat__selected:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}

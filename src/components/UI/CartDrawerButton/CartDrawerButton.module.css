@@ -1,0 +1,18 @@
+.CartDrawer {
+  width: 94%;
+  background: rgba(255, 255, 255, 30%);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  bottom: 25px;
+  left: 3%;
+  padding: 15px;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease; /* Плавность для всех изменений */
+}
+
+.CartDrawer:hover {
+  border-color: #007bff;
+  transform: scale(1.1);
+}

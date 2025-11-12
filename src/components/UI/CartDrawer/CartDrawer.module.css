@@ -1,0 +1,136 @@
+/* Затемнение фона */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  backdrop-filter: blur(3px);
+}
+
+/* Само модальное окно */
+.drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  background: white;
+  border-radius: 20px 20px 0 0;
+  z-index: 999;
+  transform: translateY(100%);
+  transition: transform 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.drawer.open {
+  transform: translateY(0);
+}
+
+/* Информация о пользователе */
+.user_info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.user_photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.username {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Список товаров */
+.cart_list {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.empty_cart {
+  text-align: center;
+  color: #999;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+}
+
+.cart_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  gap: 1rem;
+}
+
+.item_name {
+  flex: 2;
+  font-weight: 500;
+  color: #333;
+}
+
+.item_quantity {
+  flex: 0.5;
+  text-align: center;
+  color: #666;
+  font-weight: 600;
+}
+
+.item_price {
+  flex: 1;
+  text-align: right;
+  font-weight: 600;
+  color: #007bff;
+}
+
+/* Общая сумма */
+.total {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-top: 2px solid #f0f0f0;
+  color: #333;
+}
+
+/* Кнопка Buy */
+.buy_button {
+  width: 100%;
+  padding: 1rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buy_button:hover {
+  background: #0056b3;
+  transform: scale(1.02);
+}
+
+.buy_button:active {
+  transform: scale(0.98);
+}
