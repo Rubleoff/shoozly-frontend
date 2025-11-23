@@ -1,43 +1,26 @@
-import React, {useRef, useEffect} from 'react';
-import cl from './Header.module.css';
+import React from 'react'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import cl from './Header.module.css'
+import "swiper/css";
 
-const Header = ({ onCategorySelect, selectedCategory }) => {
-  const sliderRef = useRef(null)
-  const categories = ['Subscriptions', 'Game Currency', 'VPN'];
 
-  const handleCategoryClick = (category) => {
-    onCategorySelect(category);
-  };
-
-  useEffect(() => {
-    if (selectedCategory && sliderRef.current) {
-      const selectedButton = sliderRef.current.querySelector(`.${cl.cat__selected}`);
-      if (selectedButton) {
-        selectedButton.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center'
-        });
-      }
-    }
-  }, [selectedCategory]);
-
+const Header = (props) => {
   return (
-    <div className={cl.header}>
-      <div className={cl.cat_slider}>
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={`${cl.cat_button} ${selectedCategory === cat ? cl.cat__selected : ''}`}
-            onClick={() => handleCategoryClick(cat)}
-            disabled={selectedCategory === cat}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-};
+    <header className={cl.header}>
+      <Swiper 
+      className={cl.catSwiper}
+      spaceBetween={50}
+      slidesPerView={1}
+      direction='horizontal'
+      loop = {true}
+      onSlideChange={props.slider}
+      >
+          <SwiperSlide className={cl.cat__btn}>Subscriptions</SwiperSlide>
+          <SwiperSlide className={cl.cat__btn}>In-game currency</SwiperSlide>
+          <SwiperSlide className={cl.cat__btn}>VPN</SwiperSlide>
+      </Swiper>
+    </header>
+  )
+}
 
-export default Header;
+export default Header

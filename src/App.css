@@ -1,9 +1,11 @@
-.App {
-  position: relative;}
-  
+* {
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .showcase {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-  gap: 16px;
-  z-index: 1;
+  grid-template-columns: 1fr 1fr;
 }
