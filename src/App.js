@@ -10,26 +10,34 @@ import CartDrawerModuleWindow from './components/UI/CartDrawerModuleWindow/CartD
 
 
 function App() {
-
-
+  //constants
+  const categories = [
+    {id:'subs', label:'Subscriptions'},
+    {id:'currency', label:'In-game currency'},
+    {id:'vpn', label: 'VPN'}
+    ]
 
   //Кастомные Хуки
   const {tg} = useTelegram();
 
   //UseState only
   const [cards, setCards] = useState([
-    {id: 1, title: 'test', price: 1234, cat: '1'},
-    {id: 2, title: 'test', price: 1234, cat: '1'},
-    {id: 3, title: 'test', price: 1234, cat: '1'},
-    {id: 4, title: 'test', price: 1234, cat: '1'},
-    {id: 1, title: 'test', price: 1234, cat: '1'},
-    {id: 2, title: 'test', price: 1234, cat: '1'},
-    {id: 3, title: 'test', price: 1234, cat: '1'},
-    {id: 4, title: 'test', price: 1234, cat: '1'},
+    {id: 1, title: 'test213123124', price: 1234, cat: 'subs'},
+    {id: 2, title: 'test1', price: 11, cat: 'vpn'},
+    {id: 3, title: 'test2', price: 134, cat: 'currency'},
+    {id: 4, title: 'test3', price: 1434, cat: 'subs'},
+    {id: 5, title: 'test4', price: 14, cat: 'vpn'},
+    {id: 6, title: 'test', price: 1234, cat: 'vpn'},
+    {id: 7, title: 'test', price: 1234, cat: 'currency'},
+
+
   ])
 
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  const [cartItems, setCartItems] = useState([])
+
+  const [selectedCat, setSelectedCat] = useState('Subscriptions')
 
   //Остальные хуки
   useEffect(() => {
@@ -40,25 +48,73 @@ function App() {
 
   
   //Функции
-  const slide = () => {
+  
 
+  const clearCart = () => {
+    setCartItems([])
   }
 
+  const addToCart = (product) => {
+    setCartItems((prevItem) => {
+      const itemInCart = prevItem.find((item) => item.id === product.id)
 
+      if (itemInCart) {
+        return prevItem.map((item) => 
+        item.id === product.id
+        ? {...item, qty: item.qty + 1}
+        : item
+        )
+      }
+
+      return [...prevItem, {...product, qty: product.qty ?? 1}]
+    })
+  }
+  
+  const qtyIncrease = (productId) => {
+      setCartItems(prev => prev.map(item => 
+        item.id === productId 
+        ? {...item, qty: item.qty + 1} 
+        : item)
+      )
+  }
+
+  const qtyDecrease = (productId) => {
+      setCartItems(prev => prev.map
+        (item => 
+        item.id === productId 
+        ? {...item, qty: item.qty - 1} 
+        : item)
+        .filter(item => item.qty > 0))
+  }
+  
+  const totalCost = cartItems.reduce((sum, item) => {return sum + item.price * item.qty}, 0)
+
+  const totalQty = cartItems.reduce((sum, item) => {return sum + item.qty}, 0)
+
+  const filteredCards = cards.filter(card => card.cat === selectedCat)
 
   
+
   
-  
+
   return (
     <div className="App">
-      <Header slider={slide}/>
-      <div className='showcase'>
-        {cards && (cards.map(item => (<ProductCard key={item.id} item={item}/>)))}
-      </div>
-      <CartDrawerButton onClick = {() => setIsDrawerOpen(true)}/>
       <CartDrawerModuleWindow 
-      isOpen = {isDrawerOpen}
-      onClose = {() => setIsDrawerOpen(false)}/>
+      visible = {isDrawerOpen}
+      setVisible={setIsDrawerOpen}
+      items = {cartItems}
+      qtyIncrease={qtyIncrease}
+      qtyDecrease={qtyDecrease}
+      totalCost = {totalCost}
+      clearCart={clearCart}/>
+      <Header 
+      selectedCat={selectedCat}
+      onChangeCat={setSelectedCat}
+      categories= {categories}/>
+      <div className='showcase'>
+        {cards && (filteredCards.map(item => (<ProductCard key={item.id} item={item} onAddToCart={addToCart}/>)))}
+      </div>
+      <CartDrawerButton onClick={() => setIsDrawerOpen(true)} changeToBuy={isDrawerOpen} totalQty = {totalQty} totalCost={totalCost}/>
     </div>
   );
 }

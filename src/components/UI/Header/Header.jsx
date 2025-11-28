@@ -4,7 +4,10 @@ import cl from './Header.module.css'
 import "swiper/css";
 
 
-const Header = (props) => {
+const Header = ({categories, selectedCat, onChangeCat}) => {
+
+  
+
   return (
     <header className={cl.header}>
       <Swiper 
@@ -13,11 +16,17 @@ const Header = (props) => {
       slidesPerView={1}
       direction='horizontal'
       loop = {true}
-      onSlideChange={props.slider}
+      onSlideChange={(swiper) => {
+        const index = swiper.realIndex
+        const cat = categories[index]
+        if (cat) {
+          onChangeCat(cat.id)
+        }
+      }}
       >
-          <SwiperSlide className={cl.cat__btn}>Subscriptions</SwiperSlide>
-          <SwiperSlide className={cl.cat__btn}>In-game currency</SwiperSlide>
-          <SwiperSlide className={cl.cat__btn}>VPN</SwiperSlide>
+          {categories.map(cat => (
+            <SwiperSlide key={cat.id} className={cl.cat__btn}>{cat.label}</SwiperSlide>
+          ))}
       </Swiper>
     </header>
   )

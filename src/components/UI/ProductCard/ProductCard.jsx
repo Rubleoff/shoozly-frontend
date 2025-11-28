@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './ProductCard.module.css'
 
-const ProductCard = ({item}) => {
+const ProductCard = ({item, onAddToCart}) => {
   return (
     <div className={styles.card}>
         <div className={styles.card__img}>
@@ -14,7 +14,7 @@ const ProductCard = ({item}) => {
             <span className={styles.card__price}>
                 {item.price}
             </span>
-            <button className={styles.buy__btn}>+</button>
+            <button className={styles.buy__btn} onClick={() => onAddToCart(item)}>+</button>
         </div>
     </div>
   )

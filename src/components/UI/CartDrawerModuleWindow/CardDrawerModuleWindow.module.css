@@ -1,0 +1,49 @@
+.module_window {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.module_window.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart_content {
+    padding: 25px;
+    background-color: white;
+    border-radius: 15px;
+    width: 96%;
+    height: 85vh;
+    bottom: 0;
+    margin-top: 130px;
+}
+
+.user_photo {
+    width: 16px;
+    height: 16px;
+    border-radius: 60px;
+}
+
+.line {
+    border: black;
+}
+
+.clear_btn{
+    border:red 0.5px solid;
+    color:red;
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 0.25rem;
+    bottom: 0;
+
+    &:hover {
+        background-color: red;
+        color: white;
+    }
+}

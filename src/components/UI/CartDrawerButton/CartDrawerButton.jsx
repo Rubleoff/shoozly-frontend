@@ -1,9 +1,23 @@
 import React from 'react'
 import cl from './CartDrawerButton.module.css'
 
-const CartDrawerButton = () => {
+const CartDrawerButton = ({totalCost,totalQty,changeToBuy ,children, ...props}) => {
+
+  let title = 'Go to cart'
+
+  if (totalQty) {
+    title += '(' + totalQty + ')'
+  }
+
+  if (changeToBuy) {
+    title = 'Buy ' 
+    if (totalCost) {
+      title += totalCost + ' roubles'
+    }
+  }
+
   return (
-    <button className={cl.cart__btn}>Go to cart</button>
+    <button {...props} className={cl.cart__btn}>{title}</button>
   )
 }
 
