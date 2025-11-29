@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/shoozly-frontend/static/css/main.3e79f30f.css",
-    "main.js": "/shoozly-frontend/static/js/main.a6e5200b.js",
+    "main.js": "/shoozly-frontend/static/js/main.e15479f0.js",
     "index.html": "/shoozly-frontend/index.html",
     "main.3e79f30f.css.map": "/shoozly-frontend/static/css/main.3e79f30f.css.map",
-    "main.a6e5200b.js.map": "/shoozly-frontend/static/js/main.a6e5200b.js.map"
+    "main.e15479f0.js.map": "/shoozly-frontend/static/js/main.e15479f0.js.map"
   },
   "entrypoints": [
     "static/css/main.3e79f30f.css",
-    "static/js/main.a6e5200b.js"
+    "static/js/main.e15479f0.js"
   ]
 }
