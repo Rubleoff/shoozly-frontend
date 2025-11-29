@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import './App.css';
+import './variables.css'
 import { useTelegram } from './components/hooks/useTelegram';
 import Header from './components/UI/Header/Header';
 import ProductCard from './components/UI/ProductCard/ProductCard';
@@ -99,6 +100,7 @@ function App() {
 
   return (
     <div className="App">
+
       <CartDrawerModuleWindow 
       visible = {isDrawerOpen}
       setVisible={setIsDrawerOpen}
@@ -107,14 +109,27 @@ function App() {
       qtyDecrease={qtyDecrease}
       totalCost = {totalCost}
       clearCart={clearCart}/>
+
       <Header 
       selectedCat={selectedCat}
       onChangeCat={setSelectedCat}
       categories= {categories}/>
+
       <div className='showcase'>
-        {cards && (filteredCards.map(item => (<ProductCard key={item.id} item={item} onAddToCart={addToCart}/>)))}
+        {cards && 
+        (filteredCards.map(item => 
+          (<ProductCard 
+        key={item.id} 
+        item={item} 
+        onAddToCart={addToCart}/>)))}
       </div>
-      <CartDrawerButton onClick={() => setIsDrawerOpen(true)} changeToBuy={isDrawerOpen} totalQty = {totalQty} totalCost={totalCost}/>
+
+      <CartDrawerButton 
+      onClick={() => setIsDrawerOpen(!isDrawerOpen)} 
+      isOpen={isDrawerOpen} 
+      totalQty = {totalQty} 
+      totalCost={totalCost}/>
+
     </div>
   );
 }

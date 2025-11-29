@@ -1,6 +1,6 @@
 import React from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react'
-import cl from './Header.module.css'
+import styles from './Header.module.css'
 import "swiper/css";
 
 
@@ -9,13 +9,12 @@ const Header = ({categories, selectedCat, onChangeCat}) => {
   
 
   return (
-    <header className={cl.header}>
+    <header className={styles.header}>
       <Swiper 
-      className={cl.catSwiper}
-      spaceBetween={50}
-      slidesPerView={1}
-      direction='horizontal'
-      loop = {true}
+      className={styles.catSwiper}
+      spaceBetween={16}
+      slidesPerView={1.1}
+      centeredSlides={true}
       onSlideChange={(swiper) => {
         const index = swiper.realIndex
         const cat = categories[index]
@@ -25,7 +24,13 @@ const Header = ({categories, selectedCat, onChangeCat}) => {
       }}
       >
           {categories.map(cat => (
-            <SwiperSlide key={cat.id} className={cl.cat__btn}>{cat.label}</SwiperSlide>
+            <SwiperSlide key={cat.id} className={styles.catSlide}>
+              <button
+              type='button'
+              className={`${styles.cat__btn} ${selectedCat === cat.id ? styles.cat__btn_active : ''}`}>
+                {cat.label}
+              </button>
+              </SwiperSlide>
           ))}
       </Swiper>
     </header>

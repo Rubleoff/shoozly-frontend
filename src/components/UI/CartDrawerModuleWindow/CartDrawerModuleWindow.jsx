@@ -14,22 +14,51 @@ const CartDrawerModuleWindow = ({children, visible, setVisible, items, qtyDecrea
   }
 
   return (
-    <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
-      <div className={styles.cart_content} onClick={(e) => e.stopPropagation()}>
+    <div 
+    className={rootClasses.join(' ')} 
+    onClick={() => setVisible(false)}>
+      <div 
+      className={styles.cart_content} 
+      onClick={(e) => e.stopPropagation()}>
+        <div className={styles.cart_topShadow}/>
         <div className={styles.user_info}>
-          <span className={styles.user_name}> {photo && <img src={photo} alt = 'user_photo' className={styles.user_photo}/>} {username || 'Пользователь'} </span>
+          {photo && <img 
+          src={photo} 
+          alt = 'user_photo' 
+          className={styles.user_photo}/>} 
+          <span 
+          className={styles.user_name}>
+            {username || 'Пользователь'}
+          </span> 
         </div>
-        <hr style={{margin: '15px 0'}}/>
+        <hr className={styles.cart_divider}/>
         <div className={styles.cart_list}>
         {items.map(item => 
           (
             <div className={styles.line} key={item.id}>
-              <span>{item.title}</span>
-              <span>{item.price}</span>
-              <button onClick={() => {qtyDecrease(item.id)}}>-</button>
-              <span>{item.qty}</span>
-              <button onClick={() => {qtyIncrease(item.id)}}>+</button>
-              <span>{item.price * item.qty}</span>
+              <span className={styles.line_title}>{item.title}</span>
+
+              <div className={styles.qty_control}>
+                  <button 
+                className={styles.qty_btn} 
+                onClick={() => {qtyDecrease(item.id)}}>
+                  {'<'}
+                </button>
+
+                <span className={styles.qty_value}>{item.qty}</span>
+
+                <button 
+                className={styles.qty_btn} 
+                onClick={() => {qtyIncrease(item.id)}}>
+                  {'>'}
+                </button>
+              </div>
+
+              
+
+              <span className={styles.line_price}>
+                {item.price * item.qty}$
+              </span>
             </div>))}
         </div>
         <button className={styles.clear_btn} 

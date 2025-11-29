@@ -1,23 +1,24 @@
 import React from 'react'
-import cl from './CartDrawerButton.module.css'
+import styles from './CartDrawerButton.module.css'
 
-const CartDrawerButton = ({totalCost,totalQty,changeToBuy ,children, ...props}) => {
+const CartDrawerButton = ({totalCost,totalQty,isOpen ,children, ...props}) => {
 
   let title = 'Go to cart'
 
   if (totalQty) {
-    title += '(' + totalQty + ')'
+    title += `(${totalQty})`
   }
 
-  if (changeToBuy) {
+  if (isOpen) {
     title = 'Buy ' 
     if (totalCost) {
-      title += totalCost + ' roubles'
+      title += `${totalCost}$`
     }
   }
+  const btnClass = isOpen ? `${styles.cart__btn} ${styles.cart__btn_active}` : styles.cart__btn
 
   return (
-    <button {...props} className={cl.cart__btn}>{title}</button>
+    <button {...props} className={btnClass}>{title}</button>
   )
 }
 

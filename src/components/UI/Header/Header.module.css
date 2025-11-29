@@ -1,27 +1,39 @@
 .header {
-    width: 100%;
-    display: flex;
-    justify-content: center;  /* центрируем содержимое по горизонтали */
-    padding: 0.5rem 0;
+  margin-bottom: 12px;
 }
 
-.catSwiper {
-    width: 85%;               /* можно 60–90%, подбирай под дизайн */
-    max-width: 500px;
+.catSlide {
+  display: flex !important;
+  justify-content: center;
 }
 
 .cat__btn {
-    width: 100%;
-    text-align: center;
-    border-radius: 15px;
-    padding: 0.4rem 2rem;
-    font-size: 1.3rem;
-    border-color: transparent;
-    background-color: lightgray;
-    cursor: pointer;
-    transition: ease 0.3s;
+  width: 80vw;              /* таблетка занимает ~80% ширины экрана */
+  max-width: 320px;
+  height: 44px;             /* выше кнопка */
+  padding: 0 24px;
+  border-radius: 999px;
+  border: none;
+  background: #e5e7eb;
+  color: var(--text-main);
+  font-size: 15px;          /* крупнее текст */
+  font-weight: 600;         /* жирнее текст */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-soft);
+  opacity: 0.7;
+  transform: scale(0.9);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
 }
 
-.cat__btn:hover {
-    background-color: #007bff;
+.cat__btn_active {
+  background: var(--accent);
+  color: #ffffff;
+  opacity: 1;
+  transform: scale(1);
 }

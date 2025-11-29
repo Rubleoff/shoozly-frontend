@@ -5,7 +5,7 @@ const ProductCard = ({item, onAddToCart}) => {
   return (
     <div className={styles.card}>
         <div className={styles.card__img}>
-            <img src='' alt="none" />
+            {item.image ? (<img src={item.image} alt={item.title} />) : (<span>none</span>)}
         </div>
         <div className={styles.card__content}>
             <span className={styles.card__title}>
@@ -14,7 +14,11 @@ const ProductCard = ({item, onAddToCart}) => {
             <span className={styles.card__price}>
                 {item.price}
             </span>
-            <button className={styles.buy__btn} onClick={() => onAddToCart(item)}>+</button>
+            <button 
+            className={styles.buy__btn} 
+            onClick={() => onAddToCart(item)}>
+            Add
+            </button>
         </div>
     </div>
   )
